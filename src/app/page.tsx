@@ -1,29 +1,25 @@
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 
-import Hero from '@/components/hero'
-import Posts from '@/components/posts'
-import site from '@/config/site'
-import getAllPosts from '@/lib/mdx'
+import Hero from "@/components/hero";
+import Posts from "@/components/posts";
+import site from "@/config/site";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: site.url
-  }
-}
+    canonical: site.url,
+  },
+};
 
-export const runtime = 'edge'
+export const runtime = "edge";
 
 const HomePage = () => {
-  const posts = getAllPosts({
-    limit: 4
-  })
-
   return (
     <>
       <Hero />
-      <Posts posts={posts} />
+      <Projects />
+      <Posts />
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

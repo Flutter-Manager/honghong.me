@@ -1,25 +1,17 @@
 {
   "private": true,
-  "name": "honghong.me",
+  "name": "gtu-smashers",
   "version": "0.0.0",
-  "description": "My personal website and blog built with TypeScript, Next.js, and Tailwind CSS",
-  "license": "AGPL-3.0-only",
-  "author": "tszhong0411 <me@honghong.me> (https://github.com/tszhong0411/)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tszhong0411/honghong.me.git"
-  },
+  "description": "Master GTU engineering exams with our curated past papers and essential study resources. Elevate your prep and boost grades with our tailored materials.",
+  "author": "GTU Smashers",
   "type": "module",
   "scripts": {
     "build": "next build",
     "check-updates": "npx npm-check-updates --interactive --format group",
     "clean": "rm -rf .next .contentlayer coverage playwright-report test-results tsconfig.tsbuildinfo",
     "dev": "concurrently \"contentlayer dev\" \"cross-env NODE_OPTIONS='--inspect' next dev\"",
-    "format": "prettier -w .",
     "preinstall": "npx only-allow yarn",
     "postinstall": "prisma generate && contentlayer build",
-    "lint": "next lint",
-    "lint:fix": "eslint --fix .",
     "prepare": "husky install",
     "start": "next start",
     "test:coverage": "vitest --coverage --ui",
@@ -79,17 +71,12 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
     "@octokit/types": "^12.4.0",
     "@playwright/test": "^1.40.1",
     "@tailwindcss/typography": "^0.5.10",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
-    "@tszhong0411/eslint-config": "1.0.35",
-    "@tszhong0411/prettier-config": "^1.0.8",
-    "@tszhong0411/tsconfig": "^1.0.3",
     "@types/canvas-confetti": "^1.6.4",
     "@types/mdx": "^2.0.10",
     "@types/node": "^20.10.5",
@@ -102,14 +89,9 @@
     "autoprefixer": "^10.4.16",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^14.0.4",
-    "eslint-plugin-playwright": "^0.20.0",
-    "eslint-plugin-testing-library": "^6.2.0",
     "fast-xml-parser": "^4.3.2",
     "husky": "^8.0.3",
     "jsdom": "^23.0.1",
-    "lint-staged": "^15.2.0",
     "msw": "^2.0.11",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
@@ -134,46 +116,5 @@
       "last 1 safari version"
     ]
   },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "next/core-web-vitals",
-      "@tszhong0411/eslint-config"
-    ],
-    "parserOptions": {
-      "project": "./tsconfig.json",
-      "ecmaVersion": "latest"
-    },
-    "overrides": [
-      {
-        "files": [
-          "./src/tests/!(e2e)/**/*.test.{ts,tsx}"
-        ],
-        "extends": [
-          "plugin:testing-library/react"
-        ],
-        "plugins": [
-          "testing-library"
-        ]
-      },
-      {
-        "files": [
-          "./src/tests/e2e/**/*.test.{ts,tsx}"
-        ],
-        "extends": [
-          "plugin:playwright/recommended"
-        ]
-      }
-    ]
-  },
-  "lint-staged": {
-    "*.{js,jsx,cjs,mjs,ts,tsx}": [
-      "eslint"
-    ],
-    "*.{json,css,md,mdx,js,jsx,ts,tsx,cjs,mjs}": [
-      "prettier -c"
-    ]
-  },
-  "packageManager": "yarn@4.0.2",
-  "prettier": "@tszhong0411/prettier-config"
+  "packageManager": "yarn@4.0.2"
 }

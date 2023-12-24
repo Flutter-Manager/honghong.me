@@ -50,7 +50,6 @@ const CommandInput = React.forwardRef<
   const { className, ...rest } = props
 
   return (
-    // eslint-disable-next-line react/no-unknown-property
     <div className='flex items-center border-b px-3' cmdk-input-wrapper=''>
       <IconSearch size={16} className='mr-2 shrink-0 opacity-50' />
       <CommandPrimitive.Input

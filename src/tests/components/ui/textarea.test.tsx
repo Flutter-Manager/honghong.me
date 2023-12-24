@@ -5,7 +5,6 @@ import { Label, Textarea } from '@/components/ui'
 
 describe('<Textarea />', () => {
   it('should forward classes to the textarea element', () => {
-    // eslint-disable-next-line tailwindcss/no-custom-classname
     render(<Textarea className='test' />)
 
     expect(screen.getByRole('textbox')).toHaveClass('test')

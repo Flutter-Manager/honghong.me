@@ -84,7 +84,8 @@ const CommandMenu = () => {
         {
           title: 'Source code',
           icon: <IconCode size={16} className='mr-2' />,
-          onSelect: () => openLink('https://github.com/tszhong0411/honghong.me')
+          onSelect: () =>
+            openLink('https://github.com/GTU Smashers/GTU Smashers')
         }
       ]
     },
@@ -94,22 +95,22 @@ const CommandMenu = () => {
         {
           title: 'GitHub',
           icon: <IconBrandGithub size={16} className='mr-2' />,
-          onSelect: () => openLink('https://github.com/tszhong0411')
+          onSelect: () => openLink('https://github.com/GTU Smashers')
         },
         {
           title: 'Instagram',
           icon: <IconBrandInstagram size={16} className='mr-2' />,
-          onSelect: () => openLink('https://instagram.com/tszhong0411/')
+          onSelect: () => openLink('https://instagram.com/GTU Smashers/')
         },
         {
           title: 'YouTube',
           icon: <IconBrandYoutube size={16} className='mr-2' />,
-          onSelect: () => openLink('https://youtube.com/@tszhong0411')
+          onSelect: () => openLink('https://youtube.com/@GTU Smashers')
         },
         {
           title: 'Facebook',
           icon: <IconBrandFacebook size={16} className='mr-2' />,
-          onSelect: () => openLink('https://www.facebook.com/tszhong0411/')
+          onSelect: () => openLink('https://www.facebook.com/GTU Smashers/')
         }
       ]
     }

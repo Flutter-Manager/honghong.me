@@ -19,7 +19,6 @@ export const generateMetadata = async (
   parent: ResolvingMetadata
 ): Promise<Metadata> => {
   const previousOpenGraph = (await parent)?.openGraph ?? {}
-  const previousTwitter = (await parent)?.twitter ?? {}
 
   return {
     title,
@@ -33,11 +32,6 @@ export const generateMetadata = async (
       type: 'profile',
       title,
       description
-    },
-    twitter: {
-      ...previousTwitter,
-      title,
-      description
     }
   }
 }
@@ -47,7 +41,7 @@ const AboutPage = () => {
 
   return (
     <>
-      <PageTitle title='About' description='👋 Hi there! I am Hong.' />
+      <PageTitle title='About' description='👋 Hi there!' />
       <Mdx code={page.body.code} />
     </>
   )

@@ -4,7 +4,6 @@ import { Logo } from '@/components/ui'
 
 describe('<Logo />', () => {
   it('should forward classes to the textarea element', () => {
-    // eslint-disable-next-line tailwindcss/no-custom-classname
     render(<Logo className='test' data-testid='logo' />)
 
     expect(screen.getByTestId('logo')).toHaveClass('test')

@@ -6,8 +6,8 @@ import getAllPosts from '@/lib/mdx'
 
 export const GET = () => {
   const feed = new RSS({
-    title: "Hong's Blog",
-    description: 'A personal website and blog by Hong.',
+    title: "GTU Smashers",
+    description: 'GTU past papers & study guides for engineering students',
     site_url: `${site.url}`,
     feed_url: `${site.url}/rss.xml`,
     language: 'en-US',
@@ -21,7 +21,7 @@ export const GET = () => {
 
     feed.item({
       title,
-      url: `${site.url}/blog/${slug}`,
+      url: `${site.url}/materials/subject/${slug}`,
       date,
       description: summary,
       author: 'Hong'

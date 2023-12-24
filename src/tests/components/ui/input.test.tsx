@@ -5,7 +5,6 @@ import { Input, Label } from '@/components/ui'
 
 describe('<Input />', () => {
   it('should forward classes to the input element', () => {
-    // eslint-disable-next-line tailwindcss/no-custom-classname
     render(<Input className='test' />)
 
     expect(screen.getByRole('textbox')).toHaveClass('test')

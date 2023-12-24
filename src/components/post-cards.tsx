@@ -2,14 +2,11 @@
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import React from 'react'
-import useSWR from 'swr'
 
 import { Skeleton } from '@/components/ui'
-import fetcher from '@/lib/fetcher'
-import { type BlogPostCore, type Likes, type Views } from '@/types'
+import { type BlogPostCore } from '@/types'
+import { kebabCase } from '@/utils'
 import cn from '@/utils/cn'
-
-import Image from './mdx/image'
 
 type PostCardsProps = {
   posts: BlogPostCore[]
@@ -31,7 +28,6 @@ const PostCards = (props: PostCardsProps) => {
   const { posts } = props
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       className='group grid gap-4 sm:grid-cols-2'
       data-testid='post-cards'
@@ -47,16 +43,8 @@ const PostCards = (props: PostCardsProps) => {
 type PostCardProps = BlogPostCore
 
 const PostCard = (props: PostCardProps) => {
-  const { _id, slug, title, summary, date } = props
+  const { _id, slug, title, date, tags } = props
   const [formattedDate, setFormattedDate] = React.useState('')
-  const { data: viewsData, isLoading: viewsIsLoading } = useSWR<Views>(
-    `/api/views?slug=${slug}`,
-    fetcher
-  )
-  const { data: likesData, isLoading: likesIsLoading } = useSWR<Likes>(
-    `/api/likes?slug=${slug}`,
-    fetcher
-  )
 
   React.useEffect(() => {
     setFormattedDate(dayjs(date).format('MMMM DD, YYYY'))
@@ -65,7 +53,7 @@ const PostCard = (props: PostCardProps) => {
   return (
     <Link
       key={_id}
-      href={`/blog/${slug}`}
+      href={`/materials/subject/${slug}`}
       className={cn(
         'relative flex flex-col space-y-3 rounded-2xl border p-6 group-hover:after:opacity-100',
         'hover:before:opacity-100',
@@ -75,31 +63,26 @@ const PostCard = (props: PostCardProps) => {
       data-id='post-card'
     >
       <div className='absolute inset-px -z-20 rounded-[inherit] bg-background' />
-      <Image
-        src={`/images/blog/${slug}/cover.png`}
-        className='rounded-lg'
-        width={1200}
-        height={630}
-        alt={title}
-      />
       <div className='grow space-y-4'>
-        <h2 className='text-xl font-bold'>{title}</h2>
-        <div className='text-muted-foreground'>{summary}</div>
+        <h2 className='text-lg font-bold md:text-xl'>{title}</h2>
+        <div className='flex gap-2'>
+          {tags?.length && (
+            <>
+              {tags.map((tag) => (
+                <Link
+                  href={`/materials/${kebabCase(tag as string)}`}
+                  key={tag}
+                  className='rounded-md bg-background px-2 py-1 text-xs font-medium text-muted-foreground'
+                >
+                  {tag}
+                </Link>
+              ))}
+            </>
+          )}
+        </div>
       </div>
-      <div className='flex items-center gap-2 text-sm'>
+      <div className='flex items-center gap-2 text-xs'>
         {formattedDate || <Skeleton className='h-5 w-10' />}
-        <div>&middot;</div>
-        {likesIsLoading ? (
-          <Skeleton className='h-5 w-10 rounded-md' />
-        ) : (
-          <div>{likesData?.likes} likes</div>
-        )}
-        <div>&middot;</div>
-        {viewsIsLoading ? (
-          <Skeleton className='h-5 w-10 rounded-md' />
-        ) : (
-          <div>{viewsData?.views} views</div>
-        )}
       </div>
     </Link>
   )

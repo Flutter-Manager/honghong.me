@@ -13,96 +13,32 @@ import { visit } from 'unist-util-visit'
 import cn from './src/utils/cn'
 import getLanguageIconByExtension from './src/utils/get-language-icon-by-extension'
 
-const Techstack = defineNestedType(() => ({
-  name: 'Techstack',
-  fields: {
-    label: {
-      type: 'string',
-      description: 'The label of the techstack',
-      required: true
-    }
-  }
-}))
-
-const Project = defineDocumentType(() => ({
-  name: 'Project',
-  filePathPattern: 'projects/**/*.mdx',
-  contentType: 'mdx',
-  fields: {
-    name: {
-      type: 'string',
-      description: 'The name of the project',
-      required: true
-    },
-    description: {
-      type: 'string',
-      description: 'The description of the project',
-      required: true
-    },
-    homepage: {
-      type: 'string',
-      description: "The link to the project's homepage",
-      required: false
-    },
-    github: {
-      type: 'string',
-      description: "The url to the project's github page",
-      required: true
-    },
-    icon: {
-      type: 'string',
-      description: 'The name of the icon to use',
-      required: true
-    },
-    image: {
-      type: 'string',
-      description: 'Image for the project',
-      required: true
-    },
-    repo: {
-      type: 'string',
-      description: 'The name of the repo of the project',
-      required: true
-    },
-    techstack: {
-      type: 'list',
-      of: Techstack,
-      required: true
-    }
-  },
-  computedFields: {
-    slug: {
-      type: 'string',
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, '')
-    }
-  }
-}))
-
-const BlogPost = defineDocumentType(() => ({
-  name: 'BlogPost',
-  filePathPattern: 'blog/**/*.mdx',
+const Material = defineDocumentType(() => ({
+  name: 'Material',
+  filePathPattern: 'material/**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
       type: 'string',
-      description: 'The title of the blog post',
+      description: 'The title of the material',
       required: true
     },
     date: {
       type: 'string',
-      description: 'The date of the blog post',
+      description: 'The date of the material',
       required: true
     },
     modifiedTime: {
       type: 'string',
-      description: 'The modified time of the blog post',
+      description: 'The modified time of the material',
       required: true
     },
     summary: {
       type: 'string',
-      description: 'The summary of the blog post',
+      description: 'The summary of the material',
       required: true
-    }
+    },
+    tags: { type: 'list', of: { type: 'string' }, required: true }
   },
   computedFields: {
     slug: {
@@ -184,7 +120,7 @@ const rehypeCodeBlocksDarkTheme = () => {
 
 export default makeSource({
   contentDirPath: 'src/content',
-  documentTypes: [Project, BlogPost, Pages],
+  documentTypes: [Material, Pages],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

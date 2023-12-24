@@ -1,5 +1,5 @@
 import { pick } from 'contentlayer/client'
-import { allBlogPosts } from 'contentlayer/generated'
+import { allMaterials } from 'contentlayer/generated'
 
 type GetAllPostsProps = {
   limit?: number
@@ -7,11 +7,13 @@ type GetAllPostsProps = {
 }
 
 const getAllPosts = (config: GetAllPostsProps = {}) => {
-  const { limit = allBlogPosts.length, sorted = true } = config
+  const { limit = allMaterials.length, sorted = true } = config
 
-  const posts = allBlogPosts
+  const posts = allMaterials
     .slice(0, limit)
-    .map((post) => pick(post, ['_id', 'slug', 'title', 'summary', 'date']))
+    .map((post) =>
+      pick(post, ['_id', 'slug', 'title', 'summary', 'date', 'tags'])
+    )
 
   if (sorted) {
     return posts.sort(

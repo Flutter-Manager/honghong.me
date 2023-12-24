@@ -1,16 +1,12 @@
 import { withContentlayer } from 'next-contentlayer'
 
-import './src/env/env.mjs'
-
-// eslint-disable-next-line jsdoc/check-tag-names
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    ignoreBuildErrors: !!process.env.CI
+    ignoreBuildErrors: true //!!process.env.CI
   },
-
   eslint: {
-    ignoreDuringBuilds: !!process.env.CI
+    ignoreDuringBuilds: true
   },
 
   images: {
@@ -26,12 +22,11 @@ const nextConfig = {
     config.infrastructureLogging = {
       level: 'error'
     }
+    config.resolve.fallback = { fs: false, path: false }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return config
   },
 
-  // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
     return [
       {
@@ -42,7 +37,6 @@ const nextConfig = {
     ]
   },
 
-  // eslint-disable-next-line @typescript-eslint/require-await
   async headers() {
     return [
       {

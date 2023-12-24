@@ -3,7 +3,7 @@ describe('config.site', () => {
     vi.stubEnv('NODE_ENV', 'production')
     const url = (await import('@/config/site')).default.url
 
-    expect(url).toBe('https://honghong.me')
+    expect(url).toBe('https://GTU Smashers')
   })
 
   it('site url should be development url when NODE_ENV is development', async () => {

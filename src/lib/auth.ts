@@ -2,10 +2,7 @@ import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 
-import { env } from '@/env'
-
 declare module 'next-auth' {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Session {
     user: {
       email: string
@@ -16,11 +13,11 @@ declare module 'next-auth' {
 }
 
 const config: NextAuthConfig = {
-  secret: env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GithubProvider({
-      clientId: env.OAUTH_CLIENT_KEY,
-      clientSecret: env.OAUTH_CLIENT_SECRET
+      clientId: process.env.OAUTH_CLIENT_KEY,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET
     })
   ],
 
